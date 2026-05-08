@@ -5,6 +5,12 @@ import LitBondJSON from './LitBond.json'
 import MockCollateralJSON from './MockCollateral.json'
 import './App.css'
 
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 const LITBOND_ADDRESS = "0x2A432b11e719505AbC71b709138db8Ff6646ccF9";
 const COLLATERAL_ADDRESS = "0x3300708c404c0DBa6656a52A5C63Aebae7c6af91";
 
