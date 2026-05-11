@@ -69,8 +69,16 @@ function App() {
 
   const connectWallet = async () => {
     if (!window.ethereum) {
-      showToast("Please install MetaMask or another Web3 wallet!", "error")
-      return
+      // Check if user is on a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Deep link to MetaMask mobile app browser
+        const dappUrl = window.location.href.replace(/^https?:\/\//, '');
+        window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
+      } else {
+        showToast("Please install MetaMask or another Web3 wallet!", "error");
+      }
+      return;
     }
     try {
       const provider = new ethers.BrowserProvider(window.ethereum)
